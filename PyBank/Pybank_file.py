@@ -1,7 +1,7 @@
 import os
 import csv
 
-def extract_data():
+def extract_months_and_values_into_lists():
 
     budget_csv = os.path.join("PyBank", "Resources", "budget_data.csv")
 
@@ -35,15 +35,23 @@ def get_total(values):
     print(f'Total: ${total}')
 
 def get_average_change(values):
-    print("Hello")
+    differences = []
+    for i in range(1, len(values)):
+        previous_value = values[i-1]
+        current_value = values[i]
+        difference = current_value - previous_value
+        differences.append(difference)
+    average_difference = sum(differences) / len(differences)
+    print(f'Average Change: ${round(average_difference, 2)}')
 
 def get_max_change(months, values):
+    
     print("Hello")
 
 def get_min_change(months, values):
     print("Hello")
 
-months, values = extract_data()    
+months, values = extract_months_and_values_into_lists()    
 get_total_months(months)
 get_total(values)
 get_average_change(values)
