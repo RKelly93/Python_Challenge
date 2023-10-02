@@ -11,7 +11,8 @@ def extract_months_and_values_into_lists():
 
         # Read the header row first (skip this part if there is no header)
         csv_header = next(csv_file)
-        print(f"Header: {csv_header}")
+        print(f"Financial Analysis")
+        print("-------------------------")
 
         months = []
         values = []
@@ -45,11 +46,30 @@ def get_average_change(values):
     print(f'Average Change: ${round(average_difference, 2)}')
 
 def get_max_change(months, values):
-    
-    print("Hello")
+    differences = []
+    for i in range(1, len(values)):
+        previous_value = values[i-1]
+        current_value = values[i]
+        difference = current_value - previous_value
+        differences.append(difference)
+    max_change = max(differences)
+    for i in range(1, len(differences)):
+        if differences[i] == max_change:
+            max_month = months[i+1]
+            print(f'Greatest Increase in Profits: {max_month} (${max_change})')
 
 def get_min_change(months, values):
-    print("Hello")
+    differences = []
+    for i in range(1, len(values)):
+        previous_value = values[i-1]
+        current_value = values[i]
+        difference = current_value - previous_value
+        differences.append(difference)
+    min_change = min(differences)
+    for i in range(1, len(differences)):
+        if differences[i] == min_change:
+            min_month = months[i+1]
+            print(f'Greatest Decrease in Profits: {min_month} (${min_change})')
 
 months, values = extract_months_and_values_into_lists()    
 get_total_months(months)
@@ -57,12 +77,6 @@ get_total(values)
 get_average_change(values)
 get_max_change(months, values)
 get_min_change(months, values)
-
-
-
-
-
-
 
 
 # Financial Analysis
